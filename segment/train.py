@@ -52,7 +52,7 @@ from utils.general import (LOGGER, check_amp, check_dataset, check_file, check_g
                            check_requirements, check_suffix, check_yaml, colorstr, get_latest_run, increment_path,
                            init_seeds, intersect_dicts, labels_to_class_weights, labels_to_image_weights, one_cycle,
                            print_args, print_mutation, strip_optimizer, yaml_save)
-from utils.loggers import GenericLogger
+# from utils.loggers import GenericLogger
 from utils.plots import plot_evolve, plot_labels
 from utils.segment.dataloaders import create_dataloader
 from utils.segment.loss import ComputeLoss
@@ -91,8 +91,8 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
 
     # Loggers
     data_dict = None
-    if RANK in {-1, 0}:
-        logger = GenericLogger(opt=opt, console_logger=LOGGER)
+    # if RANK in {-1, 0}:
+        # logger = GenericLogger(opt=opt, console_logger=LOGGER)
         # loggers = Loggers(save_dir, weights, opt, hyp, LOGGER)  # loggers instance
         # if loggers.clearml:
         #     data_dict = loggers.clearml.data_dict  # None if no ClearML dataset or filled in by ClearML
@@ -479,8 +479,8 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
 def parse_opt(known=False):
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', type=str, default=ROOT / 'yolov5s-seg.pt', help='initial weights path')
-    parser.add_argument('--cfg', type=str, default='', help='model.yaml path')
-    parser.add_argument('--data', type=str, default=ROOT / 'data/coco128-seg.yaml', help='dataset.yaml path')
+    parser.add_argument('--cfg', type=str, default=ROOT / 'models/segment/yolov7-seg.yaml', help='model.yaml path')
+    parser.add_argument('--data', type=str, default=ROOT / 'mydata/NoFree/data.yaml', help='dataset.yaml path')
     parser.add_argument('--hyp', type=str, default=ROOT / 'data/hyps/hyp.scratch-low.yaml', help='hyperparameters path')
     parser.add_argument('--epochs', type=int, default=300, help='total training epochs')
     parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs, -1 for autobatch')
